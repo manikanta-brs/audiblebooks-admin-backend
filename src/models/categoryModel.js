@@ -1,36 +1,19 @@
-// models/Category.js
 import mongoose from "mongoose";
 
-let Category; // Declare Category outside the if block
-
-if (mongoose.models.Category) {
-  Category = mongoose.model("Category");
-} else {
-  const categorySchema = mongoose.Schema(
-    {
-      name: {
-        type: String,
-        required: true,
-        unique: true,
-      },
-      keywords: {
-        type: [String],
-        required: true,
-      },
-      description: {
-        type: String,
-        required: false,
-      },
-      imageUrl: {
-        type: String,
-        required: false,
-      },
+const categorySchema = mongoose.Schema(
+  {
+    name: { type: String, required: true },
+    subcategories: [{ type: String }], // Add an array for subcategories
+    keywords: { type: String },
+    status: { type: Boolean, default: true },
+  },
+  {
+    timestamps: {
+      createdAt: "created_at",
+      updatedAt: "updated_at",
     },
-    {
-      timestamps: true,
-    }
-  );
-  Category = mongoose.model("Category", categorySchema);
-}
+  }
+);
 
+const Category = mongoose.model("Category", categorySchema);
 export default Category;

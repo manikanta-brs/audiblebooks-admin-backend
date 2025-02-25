@@ -17,6 +17,7 @@ import {
   getNumberOfAuthors,
   getNumberOfAudiobooks,
   getAudiobooksOfAuthor,
+  getSubcategoriesOfBook,
 } from "../controllers/adminController.js";
 import verifyToken from "../middleware/authMiddleware.js";
 
@@ -31,6 +32,8 @@ router.put("/updateauthors", verifyToken, updateAuthors);
 router.delete("/deleteauthor", verifyToken, deleteAuthor);
 router.get("/audiobooks", verifyToken, getAudiobooks);
 router.get("/categories", verifyToken, getCategories);
+router.get("/categories/:category/subcategories", getSubcategoriesOfBook);
+
 router.post("/addcategories", verifyToken, addCategory);
 router.delete("/deletecategory", verifyToken, deleteCategory);
 router.delete("/deleteaudiobook", verifyToken, deleteAudiobooks);
